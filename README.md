@@ -42,13 +42,41 @@ Change the path/name to the downloaded Selenium server file.
 
 [Selenium Downloads]: http://code.google.com/p/selenium/downloads/list
 
+### py.tests
+
+Tests are run using **py.tests**. It will automatically find the tests to be run when run in the root of [mozillians-tests][github]. The following are the options that you will need to configure in order to run the tests appropriately.
+
+- **credentials:** The path to a yaml file that stores usernames and passwords to log into browserID.
+- **api:** Currently mozillians tests are set to the rc api. 
+- **baseurl:** The URL where you can locate the mozillians instance you are testing. Likely either http://mozillians-dev.allizom.org or http://localhost:8001.
+- **browser:** Configure the browser that selenium will talk to. In this case "*firefox"
+- **n:** The number of simultaneously running tests.
+
+[github]: https://github.com/tallowen/mozillians-tests
+
+### Credentials.yaml
+Take the credentials file in the root directory and replace the emails and passwords with valid browserID emails and passwords. Make sure that the vouched email account is infact vouched on the test server. Here is the example credential file:
+
+    user:
+        email: <insert valid email>
+        password: <insert valid password>
+        name: <give it a name>
+
+    unvouched:
+        email: <insert valid email>
+        password: <insert valid password>
+        name: <give it a name>
+
+Before you get started make sure to update the fields in between "<" and ">".
+
 ### Running tests locally
 
-To run tests locally, it's a simple case of calling py.test from the Mozillians-tests directory
-<br />You should specify the following argument for the Selenium rc: --api=rc
-<br />The base URL should be a valid instance of mozillians-dev: --baseurl=http://mozillians-dev.allizom.org
+To run tests locally, it's a simple case of calling py.test from the Mozillians-tests directory.
 
-    py.test --credentials=~/credentials.yaml
+Try running a command as follows and modifying it as necessary.
+
+    py.test -n 2 --credentials=credentials.yaml --baseurl=http://mozillians-dev.allizom.org --browser=*firefox 
+
 
 For other instructions type py.test --help .
 
