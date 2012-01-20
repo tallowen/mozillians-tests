@@ -44,9 +44,9 @@ class MozilliansBasePage(Page):
 
     _header_locator = 'id=header'
     _profile_link_locator = 'id=profile'
-    _invite_link_locator = 'id=invite'
+    _invite_link_locator = 'css=#invite'
     _join_us_link_locator = 'id=register'
-    _login_link_locator = 'css=#browserid-login > a'
+    _login_link_locator = 'css=#create_profile'
     _logout_link_locator = 'id=logout'
     _search_box_locator = 'id=q'
     _search_btn_locator = 'id=quick-search-btn'
